@@ -23,10 +23,10 @@ contract FlashloanTest is Test {
         IERC20(weth).approve(address(flashloan), 1e18);
 
         // eksekusi looping sebesar supply 1 weth dan borrow 2350 USDC
-        // flashloan.loopingSupply(1e18, 2350e6);
+        flashloan.loopingSupply(1e18, 2350e6);
 
-        // assertEq(IERC20(aWeth).balanceOf(address(flashloan)), 2350e6);
-        // console.log("aweth balance", IERC20(aWeth).balanceOf(address(flashloan)));
+        assertGt(IERC20(aWeth).balanceOf(address(flashloan)), 1e18);
+        console.log("aweth balance", IERC20(aWeth).balanceOf(address(flashloan)));
     }
 
 }

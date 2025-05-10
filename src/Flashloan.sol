@@ -48,7 +48,7 @@ contract Flashloan {
         (uint256 supplyAmount, uint256 borrowAmount) = abi.decode(data, (uint256, uint256));
 
         // approve ke uniswap router
-        IERC20(weth).approve(uniswapRouter, borrowAmount);
+        IERC20(usdc).approve(uniswapRouter, borrowAmount);
 
         ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
             tokenIn: usdc,
@@ -73,6 +73,6 @@ contract Flashloan {
         IAave(aave).borrow(usdc, borrowAmount, 2, 0, address(this));
 
         // bayar flashloan ke balancer
-        IERC20(weth).transfer(balancerVault, borrowAmount);
+        IERC20(usdc).transfer(balancerVault, borrowAmount);
     }
 }

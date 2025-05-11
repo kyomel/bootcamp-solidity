@@ -23,4 +23,13 @@ contract ReksadanaTest is Test {
 
         console.log("total asset", reksadana.totalAsset());
     }
+
+    function test_deposit() public {
+        deal(usdc, address(this), 1000e6);
+        IERC20(usdc).approve(address(reksadana), 1000e6);
+        reksadana.deposit(1000e6);
+
+        console.log("total asset", reksadana.totalAsset());
+        console.log("user shares", IERC20(address(reksadana)).balanceOf(address(this)));
+    }
 }
